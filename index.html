@@ -40,11 +40,38 @@
     .feature-item { text-align: center; }
     .feature-icon { font-size: 2rem; color: var(--gold); margin-bottom: 1rem; display: block; }
     
-    /* Galerie */
-    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; }
-    .gallery-item { height: 200px; overflow: hidden; border-radius: 8px; cursor: pointer; background: #eee; }
-    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
-    .gallery-item:hover img { transform: scale(1.1); }
+    /* Galerie - OPRAVENO PRO MOBIL */
+    .gallery-grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); 
+      gap: 8px; 
+      margin-top: 2rem;
+    }
+    
+    .gallery-item { 
+      aspect-ratio: 1 / 1;
+      width: 100%;
+      overflow: hidden; 
+      border-radius: 8px; 
+      cursor: pointer; 
+      background: #e0e0e0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    
+    .gallery-item img { 
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; 
+      transition: 0.3s ease;
+      display: block;
+    }
+    
+    .gallery-item:hover img { 
+      transform: scale(1.05); 
+    }
     
     /* Ceník karty */
     .price-card { background: white; padding: 2.5rem 2rem; border-radius: 15px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: 0.3s; border: 1px solid rgba(0,0,0,0.05); }
@@ -53,19 +80,65 @@
     .nav-button { display: inline-block; margin-top: 1.5rem; padding: 12px 30px; background: var(--pine); color: white; text-decoration: none; border-radius: 5px; font-weight: 600; }
     
     /* Lightbox */
-    #lightbox { position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; }
-    #lightbox img { max-width: 90%; max-height: 85%; border: 2px solid white; }
-    .lb-btn { position: absolute; color: white; font-size: 3rem; cursor: pointer; padding: 20px; }
+    #lightbox { position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: none; align-items: center; justify-content: center; padding: 20px; }
+    #lightbox img { max-width: 95%; max-height: 85vh; object-fit: contain; border-radius: 8px; }
+    .lb-btn { position: absolute; color: white; font-size: 3rem; cursor: pointer; padding: 20px; user-select: none; background: rgba(0,0,0,0.3); border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
+    .lb-btn:hover { background: rgba(0,0,0,0.6); }
+    .lb-btn-prev { left: 10px; }
+    .lb-btn-next { right: 10px; }
+    .lb-btn-close { top: 10px; right: 10px; font-size: 2rem; }
     
     /* Footer & Recenze */
     .reviews-section { background: var(--white); padding: 5rem 0; border-top: 1px solid #eee; }
     footer { background: var(--pine); color: white; padding: 4rem 0; text-align: center; }
     .footer-info a { color: var(--wheat); text-decoration: none; }
     
+    /* Mobilní optimalizace */
     @media (max-width: 900px) {
       .nav-links { gap: 0.8rem; }
       .nav-links a { font-size: 0.65rem; }
       .hero h1 { font-size: 2.5rem; }
+      
+      /* Mobilní galerie - menší položky */
+      .gallery-grid { 
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); 
+        gap: 6px;
+      }
+      
+      /* Plovoucí tlačítka na mobilu - menší */
+      .floating-btn {
+        padding: 10px 20px;
+        font-size: 0.8rem;
+      }
+    }
+    
+    @media (max-width: 600px) {
+      section { padding: 4rem 0; }
+      .section-title { font-size: 1.8rem; }
+      
+      .gallery-grid { 
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); 
+        gap: 5px;
+      }
+      
+      .floating-container {
+        bottom: 10px;
+        right: 10px;
+        gap: 8px;
+      }
+      
+      .floating-btn {
+        padding: 8px 16px;
+        font-size: 0.75rem;
+      }
+      
+      .lb-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 2rem;
+      }
+      
+      .nav-links a { font-size: 0.55rem; }
     }
   </style>
 </head>
@@ -73,7 +146,7 @@
 
 <div class="floating-container">
   <button class="floating-btn btn-res" onclick="checkAccess()">Pro ubytované</button>
-  <a href="#rezervace" class="floating-btn btn-res">📅 Nezávazně rezervovat</a>
+  <a href="#rezervace" class="floating-btn btn-res">📅 Rezervovat</a>
 </div>
 
 <nav>
@@ -164,8 +237,8 @@ Společné večery u ohně: Velká pergola s grilem je srdcem naší zahrady. Je
 <section id="mapa" class="container reveal">
   <h2 class="section-title">Kde nás najdete</h2>
   <div class="divider"></div>
-  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2595.641659976451!2d17.816401077114175!3d49.49127815661413!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471393e2b204f767%3A0x67878d9101c57e5d!2zTsSbbWV0aWNlIDk3LCA3NTYgNDMgS2VsxI0!5e0!3m2!1scs!2scz!4v1711488000000" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-  <a href="https://maps.app.goo.gl/t9L9R6z3H5U4E2E67" target="_blank" class="nav-button">📍 Spustit navigaci k chalupě</a>
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2595.641659976451!2d17.816401077114175!3d49.49127815661413!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471393e2b204f767%3A0x67878d9101c57e5d!2zTsSbbWV0aWNlIDk3LCA3NTYgNDMgS2VsxI0!5e0!3m2!1scs!2scz!4v1711488000000" width="100%" height="450" style="border:0; border-radius: 10px;" allowfullscreen="" loading="lazy"></iframe>
+ 
 </section>
 
 <section id="hodnoceni" class="reviews-section reveal">
@@ -187,10 +260,10 @@ Společné večery u ohně: Velká pergola s grilem je srdcem naší zahrady. Je
 </footer>
 
 <div id="lightbox">
-  <span class="lb-btn" style="left: 20px;" onclick="changeImage(-1)">❮</span>
+  <span class="lb-btn lb-btn-prev" onclick="changeImage(-1)">❮</span>
   <img id="lightbox-img" src="" alt="Galerie">
-  <span class="lb-btn" style="right: 20px;" onclick="changeImage(1)">❯</span>
-  <span class="lb-btn" style="top: 20px; right: 20px; font-size: 2rem;" onclick="document.getElementById('lightbox').style.display='none'">✕</span>
+  <span class="lb-btn lb-btn-next" onclick="changeImage(1)">❯</span>
+  <span class="lb-btn lb-btn-close" onclick="closeLightbox()">✕</span>
 </div>
 
 <script>
@@ -214,6 +287,7 @@ Společné večery u ohně: Velká pergola s grilem je srdcem naší zahrady. Je
   ];
 
   let currentIdx = 0;
+  
   function renderGallery() {
     const grid = document.getElementById('main-gallery');
     grid.innerHTML = '';
@@ -221,7 +295,12 @@ Společné večery u ohně: Velká pergola s grilem je srdcem naší zahrady. Je
       const item = document.createElement('div');
       item.className = 'gallery-item';
       item.onclick = () => openLightbox(idx);
-      item.innerHTML = `<img src="${url}" loading="lazy" alt="Galerie foto">`;
+      item.style.cursor = 'pointer';
+      // Obrázek bez lazy loading (důležité na mobilu)
+      const img = document.createElement('img');
+      img.src = url;
+      img.alt = 'Galerie foto ' + (idx + 1);
+      item.appendChild(img);
       grid.appendChild(item);
     });
   }
@@ -230,12 +309,32 @@ Společné večery u ohně: Velká pergola s grilem je srdcem naší zahrady. Je
     currentIdx = idx;
     document.getElementById('lightbox-img').src = allPhotos[currentIdx];
     document.getElementById('lightbox').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').style.display = 'none';
+    document.body.style.overflow = '';
   }
 
   function changeImage(step) {
     currentIdx = (currentIdx + step + allPhotos.length) % allPhotos.length;
     document.getElementById('lightbox-img').src = allPhotos[currentIdx];
   }
+
+  // Zavření lightboxu po kliknutí mimo obrázek
+  document.getElementById('lightbox').addEventListener('click', function(e) {
+    if (e.target === this) closeLightbox();
+  });
+
+  // Klávesové zkratky
+  document.addEventListener('keydown', function(e) {
+    if (document.getElementById('lightbox').style.display === 'flex') {
+      if (e.key === 'ArrowLeft') changeImage(-1);
+      if (e.key === 'ArrowRight') changeImage(1);
+      if (e.key === 'Escape') closeLightbox();
+    }
+  });
 
   function checkAccess() {
     var p = prompt("Zadejte přístupové heslo:");
