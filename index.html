@@ -354,22 +354,35 @@
   <div class="divider"></div>
   <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
     
-    <!-- Kalendář obsazenosti -->
     <div>
       <h3 style="margin-bottom: 1rem;">Kalendář obsazenosti</h3>
       <iframe src="https://obsazenost.e-chalupy.cz/kalendar.php?id=18461&pocetMesicu=12&velikost=3&jazyk=cz" height="460px" width="100%" frameborder="0" style="border-radius: 10px;" loading="lazy"></iframe>
     </div>
 
-    <!-- Kontaktní formulář e-chalupy -->
     <div>
       <h3 style="margin-bottom: 1rem;">Napište nám</h3>
       
-      <!-- DŮLEŽITÉ: Do tohoto divu se formulář automaticky vykreslí -->
+      <!-- TADY SE FORMULÁŘ VYKRESLÍ -->
       <div id="ech_kontakt_c"></div>
 
       <script>
-        window.ech_kontakt={ id: '18461', klic: 'a0d08ec1c093DF2', styl: '1', barvaTlacitko: '#28a745', jazyk: 'cs' };
-        (function(w,d,o,g,r,m){a=d.createElement(o),m=d.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://api2.e-chalupy.cz/konfigurator/kontakt/js/kontakt.js');
+        // Konfigurace pro e-chalupy
+        window.ech_kontakt = { 
+            id: '18461', 
+            klic: 'a0d08ec1c093DF2', 
+            styl: '1', 
+            barvaTlacitko: '#28a745', 
+            jazyk: 'cs' 
+        };
+
+        // Samotné načtení skriptu
+        (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "https://api2.e-chalupy.cz/konfigurator/kontakt/js/kontakt.js";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'ech-kontakt-js'));
       </script>
     </div>
 
