@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WJ3GDJWRH4"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -16,7 +15,6 @@
   <meta name="author" content="Jinachalupa.cz">
   <meta name="robots" content="index, follow">
   
-  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Jinachalupa.cz | Moderní chalupa na vesnici pro rodiny s dětmi">
   <meta property="og:description" content="Moderní chalupa pro rodiny. Kapacita 18 osob, 6 ložnic, vnitřní herna, venkovní nafukovací vířivka.">
@@ -29,6 +27,7 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
   
   <style>
@@ -45,6 +44,7 @@
       line-height: 1.6; -webkit-font-smoothing: antialiased;
     }
     
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-8px); } }
     
     .reveal { opacity: 0; transform: translateY(20px); transition: 0.6s ease-out; }
@@ -90,13 +90,14 @@
     .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 4.5rem); margin-bottom: 1rem; }
     .hero p { font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; color: var(--wheat); margin-bottom: 2rem; }
     
-    /* ÚPRAVA: Průhledné tlačítko */
     .hero-cta { 
-      background: transparent; color: white; padding: 15px 35px; 
-      text-decoration: none; border: 2px solid white; border-radius: 8px; font-weight: 600; text-align: center;
+      background: transparent; /* ZMĚNA: Průhledné pozadí */
+      color: white; padding: 15px 35px; 
+      text-decoration: none; border-radius: 8px; font-weight: 600; text-align: center;
       line-height: 1.4; transition: 0.3s;
+      border: 2px solid white; /* ZMĚNA: Bílý okraj */
     }
-    .hero-cta:hover { background: rgba(255,255,255,0.1); transform: scale(1.03); }
+    .hero-cta:hover { transform: scale(1.03); background: rgba(255,255,255,0.1); }
 
     /* Sekce */
     section { padding: 5rem 0; scroll-margin-top: 80px; }
@@ -141,15 +142,13 @@
 </head>
 <body>
 
-<!-- ÚPRAVA: Tlačítko pro ubytované s heslem -->
-<a href="javascript:void(0)" class="btn-login" onclick="checkAccess()">Pro ubytované</a>
+<a href="javascript:void(0)" class="btn-login" onclick="checkPassword()">Pro ubytované</a>
 <a href="#rezervace" class="btn-contact-float">📅 Napište nám</a>
 
 <nav>
   <ul class="nav-links">
     <li><a href="#o-chalupe">Chalupa</a></li>
-    <li><a href="okoli.html">Okolí</a></li> <!-- ÚPRAVA: Odkaz Okolí -->
-    <li><a href="#galerie">Fotky</a></li>
+    <li><a href="okoli.html">Okolí</a></li> <li><a href="#galerie">Fotky</a></li>
     <li><a href="#rezervace">Termíny</a></li>
     <li><a href="#cenik">Ceník</a></li>
     <li><a href="#mapa">Mapa</a></li>
@@ -290,9 +289,9 @@
 </div>
 
 <script>
-  // ÚPRAVA: Funkce pro kontrolu hesla
-  function checkAccess() {
-    var password = prompt("Zadejte heslo pro ubytované hosty:");
+  // ZMĚNA: Funkce pro kontrolu hesla
+  function checkPassword() {
+    var password = prompt("Zadejte heslo pro vstup do sekce pro ubytované:");
     if (password === "2023") {
       window.location.href = "ubytovani.html";
     } else if (password !== null) {
