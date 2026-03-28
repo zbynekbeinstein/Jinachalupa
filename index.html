@@ -349,41 +349,56 @@
   <div class="gallery-grid" id="main-gallery"></div>
 </section>
 
+<!-- SEKCЕ REZERVACE - OPRAVENÁ VERZE -->
 <section id="rezervace" class="container reveal">
   <h2 class="section-title">Termíny a rezervace</h2>
   <div class="divider"></div>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-    <div>
-      <h3 style="margin-bottom: 1rem;">Kalendář obsazenosti</h3>
-      <iframe src="https://obsazenost.e-chalupy.cz/kalendar.php?id=18461&pocetMesicu=12&velikost=3&jazyk=cz" height="460px" width="100%" frameborder="0" style="border-radius: 10px;" loading="lazy"></iframe>
+  
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; align-items: start;">
+    
+    <!-- LEVÝ SLOUPCOVÝ BLOK: Kalendář -->
+    <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+      <h3 style="margin-bottom: 1.5rem; color: var(--pine); font-family: 'Playfair Display', serif;">Kalendář obsazenosti</h3>
+      <iframe 
+        src="https://obsazenost.e-chalupy.cz/kalendar.php?id=18461&pocetMesicu=12&velikost=3&jazyk=cz" 
+        height="460px" 
+        width="100%" 
+        frameborder="0" 
+        style="border-radius: 10px; border: 1px solid #eee;" 
+        loading="lazy">
+      </iframe>
     </div>
-    <div>
-      <h3 style="margin-bottom: 1rem;">Napište nám</h3>
-      <form class="contact-form" onsubmit="handleFormSubmit(event)">
-        <div class="form-group">
-          <label for="name">Jméno *</label>
-          <input type="text" id="name" name="name" required placeholder="Vaše jméno">
-        </div>
-        <div class="form-group">
-          <label for="email">Email *</label>
-          <input type="email" id="email" name="email" required placeholder="vase@email.com">
-        </div>
-        <div class="form-group">
-          <label for="phone">Telefon</label>
-          <input type="tel" id="phone" name="phone" placeholder="+420 XXX XXX XXX">
-        </div>
-        <div class="form-group">
-          <label for="message">Vaše zpráva *</label>
-          <textarea id="message" name="message" required placeholder="Jaké termíny vás zajímají? Kolik osob?"></textarea>
-        </div>
-        <button type="submit" class="form-submit">Odeslat rezervační dotaz</button>
-        <div class="form-status" id="formStatus"></div>
-      </form>
+
+    <!-- PRAVÝ SLOUPCOVÝ BLOK: Kontaktní formulář -->
+    <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+      <h3 style="margin-bottom: 1.5rem; color: var(--pine); font-family: 'Playfair Display', serif;">Napište nám</h3>
+      
+      <!-- TADY SE ZOBRAZÍ FORMULÁŘ Z E-CHALUP -->
+      <div id="ech_kontakt_c">
+        <p style="color: #666; font-size: 0.9rem;">Načítám rezervační formulář...</p>
+      </div>
+
+      <!-- SKRIPT E-CHALUPY (Musí být pod div#ech_kontakt_c) -->
       <script>
-        window.ech_kontakt={ id: '18461', klic: 'a0d08ec1c093DF2', styl: '1', barvaTlacitko: '#28a745', jazyk: 'cs' };
-        (function(w,d,o,g,r,m){a=d.createElement(o),m=d.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://api2.e-chalupy.cz/konfigurator/kontakt/js/kontakt.js');
+        window.ech_kontakt = { 
+          id: '18461', 
+          klic: 'a0d08ec1c093DF2', 
+          styl: '1', 
+          barvaTlacitko: '#28a745', 
+          jazyk: 'cs' 
+        };
+        (function(w,d,o,g,r,m){
+          var a=d.createElement(o), m=d.getElementsByTagName(o)[0];
+          a.async=1; a.src=g;
+          m.parentNode.insertBefore(a,m);
+        })(window,document,'script','https://api2.e-chalupy.cz/konfigurator/kontakt/js/kontakt.js');
       </script>
+
+      <p style="margin-top: 1.5rem; font-size: 0.85rem; color: #888; text-align: center;">
+        Vaše poptávka bude odeslána přímo majiteli objektu přes systém e-chalupy.cz.
+      </p>
     </div>
+
   </div>
 </section>
 
