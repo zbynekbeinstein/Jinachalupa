@@ -27,7 +27,6 @@
   <link rel="canonical" href="https://jinachalupa.cz">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75'>🏡</text></svg>">
   
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
@@ -64,7 +63,7 @@
     }
     .nav-links a:hover { color: var(--gold); }
     
-    /* Tlačítka */
+    /* Plovoucí tlačítka */
     .btn-login {
       position: fixed; top: 80px; right: 20px; z-index: 1001;
       padding: 10px 20px; background: var(--pine); color: white;
@@ -91,7 +90,7 @@
     .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 4.5rem); margin-bottom: 1rem; }
     .hero p { font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; color: var(--wheat); margin-bottom: 2rem; }
     
-    /* Úprava: Průhledné tlačítko s rámečkem */
+    /* ÚPRAVA: Průhledné tlačítko */
     .hero-cta { 
       background: transparent; color: white; padding: 15px 35px; 
       text-decoration: none; border: 2px solid white; border-radius: 8px; font-weight: 600; text-align: center;
@@ -105,6 +104,7 @@
     .section-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--pine); margin-bottom: 0.5rem; }
     .divider { width: 60px; height: 3px; background: var(--gold); margin-bottom: 2.5rem; }
     
+    /* Karty a Grid */
     .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin: 3rem 0; }
     .feature-item { text-align: center; }
     .feature-icon { font-size: 2.5rem; display: block; margin-bottom: 1rem; }
@@ -123,9 +123,11 @@
     .price-card:hover { border-color: var(--gold); transform: translateY(-5px); }
     .price-value { font-size: 1.8rem; font-weight: bold; color: var(--gold); margin: 1rem 0; }
 
+    /* Footer */
     footer { background: var(--pine); color: white; padding: 4rem 0; text-align: center; }
     footer a { color: var(--wheat); text-decoration: none; }
 
+    /* Lightbox */
     #lightbox { position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; }
     #lightbox img { max-width: 90%; max-height: 80vh; }
     .lb-close { position: absolute; top: 20px; right: 20px; color: white; font-size: 2rem; cursor: pointer; }
@@ -139,14 +141,14 @@
 </head>
 <body>
 
-<!-- Úprava: Tlačítko s heslem -->
+<!-- ÚPRAVA: Tlačítko pro ubytované s heslem -->
 <a href="javascript:void(0)" class="btn-login" onclick="checkAccess()">Pro ubytované</a>
 <a href="#rezervace" class="btn-contact-float">📅 Napište nám</a>
 
 <nav>
   <ul class="nav-links">
     <li><a href="#o-chalupe">Chalupa</a></li>
-    <li><a href="okoli.html">Okolí</a></li> <!-- Úprava: Odkaz Okolí -->
+    <li><a href="okoli.html">Okolí</a></li> <!-- ÚPRAVA: Odkaz Okolí -->
     <li><a href="#galerie">Fotky</a></li>
     <li><a href="#rezervace">Termíny</a></li>
     <li><a href="#cenik">Ceník</a></li>
@@ -169,8 +171,15 @@
   <h2 class="section-title">O chalupě</h2>
   <div class="divider"></div>
   <p style="font-size: 1.2rem; color: var(--pine); font-weight: 500;">Ideální zázemí pro rodiny s dětmi. Společné zážitky, na které se nezapomíná.</p>
-  <p style="margin-top: 1.5rem;">Víme, že naplánovat dovolenou pro několik rodin najednou může být oříšek. U nás v Němeticích jsme proto vše připravili tak, aby si děti měly kde hrát a dospělí si mohli v klidu vypít kávu nebo sklenku vína.</p>
+  <p style="margin-top: 1.5rem;">Víme, že naplánovat dovolenou pro několik rodin najednou může být oříšek. U nás v Němeticích jsme proto vše připravili tak, aby si děti měly kde hrát a dospělí si mohli v klidu vypít kávu nebo sklenku vína. Naše chalupa kombinuje moderní komfort s kouzlem venkova a nabízí velkorysý prostor až pro 18 hostů v 6 samostatných ložnicích, což zajišťuje soukromí i při plném obsazení.</p>
   
+  <h3 style="margin-top: 2.5rem; color: var(--pine);">Proč si nás rodiny vybírají?</h3>
+  <div style="margin-top: 1rem;">
+    <p><strong>Zábava za každého počasí:</strong> Naše prostorná vnitřní herna je nejoblíbenějším místem dětí. Zatímco se ony zabaví hrou, vy o nich máte přehled, ale užíváte si zasloužený relax.</p>
+    <p style="margin-top: 1rem;"><strong>Bezpečná zahrada a relax:</strong> Celý pozemek je navržen tak, aby si děti mohly bezpečně hrát venku. Třešničkou na dortu je venkovní vířivka, která poslouží jako vodní radovánky pro nejmenší a večer jako oáza klidu pro rodiče pod hvězdami.</p>
+    <p style="margin-top: 1rem;"><strong>Společné večery u ohně:</strong> Velká pergola s grilem je srdcem naší zahrady. Je to ideální místo pro společné večeře, opékání špekáčků nebo jen posezení u ohně, zatímco děti usínají v patře.</p>
+  </div>
+
   <div class="features-grid">
     <div class="feature-item"><span class="feature-icon">👥</span><h4>Kapacita 18 osob</h4><p>6 stylových ložnic s pohodlnými lůžky</p></div>
     <div class="feature-item"><span class="feature-icon">🎮</span><h4>Zábava</h4><p>Velká vnitřní herna pro děti</p></div>
@@ -187,6 +196,7 @@
 <section id="galerie" class="container reveal">
   <h2 class="section-title">Fotogalerie</h2>
   <div class="divider"></div>
+  <p style="margin-bottom: 1.5rem;">Klikněte na kteroukoliv fotku pro větší náhled</p>
   <div class="gallery-grid" id="main-gallery"></div>
 </section>
 
@@ -195,12 +205,15 @@
   <div class="divider"></div>
   <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
     <div>
+      <h3 style="margin-bottom: 1rem; color: var(--pine);">Kalendář obsazenosti</h3>
       <iframe src="https://obsazenost.e-chalupy.cz/kalendar.php?id=18461&pocetMesicu=12&velikost=3&jazyk=cz" width="100%" height="460" frameborder="0" style="border-radius: 10px; border: 1px solid #eee;"></iframe>
     </div>
     <div>
+      <h3 style="margin-bottom: 1rem; color: var(--pine);">Napište nám</h3>
       <div id="ech_kontakt_c"></div>
       <script>window.ech_kontakt = { id: '18461', klic: 'a0d08ec1c093DF2', styl: '1', barvaTlacitko: '#28a745', jazyk: 'cs' };</script>
       <script src="https://api2.e-chalupy.cz/konfigurator/kontakt/js/kontakt.js" async></script>
+      <p style="margin-top: 1rem; font-size: 0.8rem; color: #777; text-align: center;">Vaše poptávka bude odeslána přímo majiteli objektu přes systém e-chalupy.cz.</p>
     </div>
   </div>
 </section>
@@ -209,23 +222,65 @@
   <h2 class="section-title">Ceník pronájmu</h2>
   <div class="divider"></div>
   <div class="price-grid">
-    <div class="price-card"><h3>Letní sezóna</h3><div class="price-value">24 000 Kč</div><p>Na týden pro 18 osob</p></div>
-    <div class="price-card"><h3>Mimo sezónu</h3><div class="price-value">20 000 Kč</div><p>Na týden pro 18 osob</p></div>
-    <div class="price-card"><h3>Prodloužený víkend</h3><div class="price-value">13 000 Kč</div><p>3 noci pro 18 osob</p></div>
+    <div class="price-card">
+      <h3>Letní sezóna</h3>
+      <p>červen–září</p>
+      <div class="price-value">24 000 Kč</div>
+      <p>Na týden (7 nocí)<br>pro 18 osob</p>
+    </div>
+    <div class="price-card">
+      <h3>Mimo sezónu</h3>
+      <p>říjen–květen</p>
+      <div class="price-value">20 000 Kč</div>
+      <p>Na týden (7 nocí)<br>pro 18 osob</p>
+    </div>
+    <div class="price-card">
+      <h3>Prodloužený víkend</h3>
+      <p>Pátek–pondělí</p>
+      <div class="price-value">13 000 Kč</div>
+      <p>3 noci (pátek–pondělí)<br>pro 18 osob</p>
+    </div>
+    <div class="price-card">
+      <h3>Svátky</h3>
+      <p>Vánoce, Silvestr, Velikonoce</p>
+      <div class="price-value">Cena dle dohody</div>
+      <p>Individuální kalkulace</p>
+    </div>
+  </div>
+  <p style="text-align: center; margin-top: 2rem; font-weight: 500;">Uvedené ceny jsou bez elektřiny a vody (platí se dle skutečného odběru).</p>
+  <div style="text-align: center; margin-top: 2rem;">
+    <a href="#rezervace" class="hero-cta" style="background: var(--pine); border: none;">Napište nám →</a>
   </div>
 </section>
 
 <section id="mapa" class="container reveal">
   <h2 class="section-title">Kde nás najdete</h2>
   <div class="divider"></div>
+  <p style="margin-bottom: 1.5rem;">Naše chalupa se nachází v klidné části Němetic, pouhých 15 minut od města Kelč v Moravskoslezském kraji.</p>
   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2595.641659976451!2d17.816401077114175!3d49.49127815661413!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471393e2b204f767%3A0x67878d9101c57e5d!2zTsSbbWV0aWNlIDk3LCA3NTYgNDMgS2VsxI0!5e0!3m2!1scs!2scz!4v1711488000000" width="100%" height="400" style="border:0; border-radius: 12px;" allowfullscreen="" loading="lazy"></iframe>
+  <div style="text-align: center; margin-top: 1.5rem;">
+    <a href="tel:+420608945349" class="hero-cta" style="background: #444; border: none;">☎️ Zavolat (608 945 349)</a>
+  </div>
+</section>
+
+<section id="hodnoceni" class="container reveal">
+  <h2 class="section-title">Hodnocení hostů</h2>
+  <div class="divider"></div>
+  <div id="echalupy-hodnoceni"></div>
+  <script>window.echalupyIdObjektu = '18461'; window.echalupyVzhled = 'p'; window.celkoveHodnoceni = '1'; window.pocetZaznamu = 'vse';</script>
+  <script src="https://api2.e-chalupy.cz/konfigurator/hodnoceni/widget/dist/widgetHodnoceni.js" charset="UTF-8"></script>
 </section>
 
 <footer id="kontakt">
   <div class="container">
     <h2 style="font-family: 'Playfair Display', serif; margin-bottom: 1.5rem;">Jinachalupa.cz</h2>
-    <p>Němetice 97, 756 43 Kelč | <a href="tel:+420608945349">+420 608 945 349</a></p>
-    <p>© 2026 Jinachalupa.cz. Všechna práva vyhrazena.</p>
+    <p>Němetice 97, 756 43 Kelč</p>
+    <p>Telefon: <a href="tel:+420608945349">+420 608 945 349</a></p>
+    <p>Email: <a href="mailto:jinachalupa@gmail.com">jinachalupa@gmail.com</a></p>
+    <p style="margin-top: 1.5rem; color: var(--wheat); font-size: 0.9rem;">Provozovatel: <strong>Zbynek Beinstein</strong>, IČO: <strong>21739731</strong></p>
+    <div style="margin-top: 2rem; font-size: 0.8rem; opacity: 0.7;">
+      © 2026 Jinachalupa.cz. Všechna práva vyhrazena. | <a href="#">Zásady ochrany osobních údajů</a>
+    </div>
   </div>
 </footer>
 
@@ -235,7 +290,7 @@
 </div>
 
 <script>
-  // Funkce pro heslo
+  // ÚPRAVA: Funkce pro kontrolu hesla
   function checkAccess() {
     var password = prompt("Zadejte heslo pro ubytované hosty:");
     if (password === "2023") {
