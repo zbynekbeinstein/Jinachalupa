@@ -1,47 +1,203 @@
-
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vítejte u nás | Jinachalupa.cz</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
-<style>
-  :root { --pine: #2d4a35; --wheat: #e8d8b0; --cream: #faf7f0; --gold: #c9a84c; --text: #2a1f1a; --white: #ffffff; }
-  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); padding-bottom: 50px; }
-  .header { background: var(--pine); color: var(--wheat); padding: 40px 20px; text-align: center; }
-  .container { max-width: 600px; margin: 0 auto; padding: 20px; text-align: center; }
-  .card { background: white; border-radius: 20px; padding: 30px; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-  h2 { font-family: 'Playfair Display'; color: var(--pine); margin-bottom: 20px; font-size: 1.6rem; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tipy na výlety, restaurace a aktivity v okolí Jiné chalupy v Němeticích.">
+  <title>Okolí a aktivity | Jinachalupa.cz</title>
   
-  /* Wi-Fi kód */
-  .wifi-instructions { color: var(--gold); font-size: 1.1rem; font-weight: bold; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;}
-  .qr-code { width: 100%; max-width: 280px; height: auto; margin: 10px auto 10px auto; display: block; border: 1px solid #eee; padding: 15px; border-radius: 10px; }
-
-  /* Tlačítka kontaktů */
-  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 10px; }
-  .contact-btn { display: block; background: var(--pine); color: white; text-align: center; padding: 18px; border-radius: 12px; text-decoration: none; font-weight: bold; font-size: 0.95rem; transition: 0.3s; }
-  .contact-btn:hover { background: var(--gold); transform: scale(1.03); }
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75'>🌳</text></svg>">
   
-  .back-link { display: inline-block; margin-top: 30px; color: var(--pine); text-decoration: none; font-size: 0.9rem; border-bottom: 1px solid transparent; }
-  .back-link:hover { border-bottom-color: var(--pine); }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { 
+      --pine: #2d4a35; --wheat: #e8d8b0; --cream: #faf7f0; --gold: #c9a84c; 
+      --text: #2a1f1a; --white: #ffffff;
+    }
+    
+    html { scroll-behavior: smooth; }
+    body { 
+      font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); 
+      line-height: 1.6; -webkit-font-smoothing: antialiased;
+    }
 
-  @media (max-width: 480px) {
-    .contact-grid { grid-template-columns: 1fr; }
-  }
-</style>
+    /* Animace */
+    .reveal { opacity: 0; transform: translateY(20px); transition: 0.6s ease-out; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    
+    /* Navigace */
+    nav { 
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; 
+      justify-content: center; background: var(--pine); height: 60px; 
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; align-items: center; padding: 0 10px; }
+    .nav-links a { 
+      color: var(--wheat); text-decoration: none; font-size: 0.85rem; text-transform: uppercase; 
+      font-weight: 500; padding: 10px 5px; transition: 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .brand { font-family: 'Playfair Display', serif; font-weight: 700; color: var(--white) !important; letter-spacing: 1px; }
+
+    /* Hamburger Menu */
+    .menu-toggle {
+      display: none; flex-direction: column; justify-content: space-around;
+      width: 30px; height: 21px; background: transparent; border: none;
+      cursor: pointer; position: absolute; right: 20px; top: 20px; z-index: 1002;
+    }
+    .menu-toggle span { width: 30px; height: 3px; background: var(--wheat); border-radius: 10px; transition: 0.3s; }
+
+    @media (max-width: 768px) {
+      .menu-toggle { display: flex; }
+      .nav-links {
+        display: none; flex-direction: column; position: absolute;
+        top: 60px; left: 0; width: 100%; background: var(--pine);
+        padding: 20px 0; gap: 0; box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+      }
+      .nav-links.active { display: flex; }
+      .nav-links li { width: 100%; text-align: center; }
+      .nav-links a { display: block; padding: 15px; font-size: 1rem; border-bottom: 1px solid rgba(232, 216, 176, 0.1); }
+    }
+
+    /* Hero Sekce */
+    .hero { 
+      height: 60vh; margin-top: 60px; 
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+      url('https://i.postimg.cc/SKvQSxt2/00.jpg') center/cover; 
+      display: flex; flex-direction: column; align-items: center; justify-content: center; 
+      color: white; text-align: center; padding: 2rem;
+    }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 4rem); margin-bottom: 1rem; }
+    .hero p { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; color: var(--wheat); }
+
+    /* Obsah */
+    section { padding: 4rem 0; scroll-margin-top: 80px; }
+    .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--pine); margin-bottom: 0.5rem; }
+    .divider { width: 50px; height: 3px; background: var(--gold); margin-bottom: 2rem; }
+    
+    .content-block { background: white; padding: 2.5rem; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 3rem; }
+    .content-block h3 { color: var(--pine); margin-bottom: 1rem; font-family: 'Playfair Display', serif; font-size: 1.6rem; }
+    .placeholder-text { color: #777; font-style: italic; }
+
+    /* Footer */
+    footer { background: var(--pine); color: white; padding: 3rem 0; text-align: center; margin-top: 2rem; }
+    footer a { color: var(--wheat); text-decoration: none; }
+  </style>
 </head>
 <body>
 
-<div class="header">
-  <h1 style="font-family: 'Playfair Display'; font-size: 2.5rem;">Vítejte u nás!</h1>
-  <p style="margin-top: 10px; font-weight: 300; text-transform: uppercase; letter-spacing: 1.5px;">Informace pro ubytované hosty</p>
+<nav>
+  <button class="menu-toggle" id="mobile-menu" aria-label="Menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <ul class="nav-links" id="nav-list">
+    <li><a href="index.html" class="brand">Jinachalupa.cz</a></li>
+    <li><a href="#restaurace" onclick="toggleMenu()">Restaurace</a></li>
+    <li><a href="#turistika" onclick="toggleMenu()">Turistika</a></li>
+    <li><a href="#mesta" onclick="toggleMenu()">Města</a></li>
+    <li><a href="#koupani" onclick="toggleMenu()">Koupání</a></li>
+    <li><a href="#hry" onclick="toggleMenu()">Hry</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <p>Objevte krásy okolí Němetic</p>
+  <h1>Tipy na výlety</h1>
+</section>
+
+<div class="container">
+  
+  <section id="restaurace" class="reveal">
+    <h2 class="section-title">Restaurace</h2>
+    <div class="divider"></div>
+    <div class="content-block">
+      <h3>Kde se dobře najíst</h3>
+      <p class="placeholder-text">Zde bude doplněn text s doporučenými restauracemi v okolí Kelče a Němetic...</p>
+    </div>
+  </section>
+
+  <section id="turistika" class="reveal">
+    <h2 class="section-title">Turistika</h2>
+    <div class="divider"></div>
+    <div class="content-block">
+      <h3>Pěší túry a cyklotrasy</h3>
+      <p class="placeholder-text">Zde bude doplněn text o turistických trasách, vyhlídkách a přírodních zajímavostech...</p>
+    </div>
+  </section>
+
+  <section id="mesta" class="reveal">
+    <h2 class="section-title">Města v okolí</h2>
+    <div class="divider"></div>
+    <div class="content-block">
+      <h3>Kam za kulturou a historií</h3>
+      <p class="placeholder-text">Zde bude doplněn text o městech Kelč, Valašské Meziříčí, Hranice a dalších...</p>
+    </div>
+  </section>
+
+  <section id="koupani" class="reveal">
+    <h2 class="section-title">Koupání</h2>
+    <div class="divider"></div>
+    <div class="content-block">
+      <h3>Aquaparky a přírodní koupaliště</h3>
+      <p class="placeholder-text">Zde bude doplněn text s tipy na letní osvěžení v okolních bazénech a lomech...</p>
+    </div>
+  </section>
+
+  <section id="hry" class="reveal">
+    <h2 class="section-title">Hry a zábava</h2>
+    <div class="divider"></div>
+    <div class="content-block">
+      <h3>Aktivity pro děti i dospělé</h3>
+      <p class="placeholder-text">Zde bude doplněn text o dětských hřištích, bowlingu nebo jiných volnočasových aktivitách...</p>
+    </div>
+  </section>
+
+  <div style="text-align: center; margin-bottom: 4rem;">
+    <a href="index.html" style="color: var(--pine); text-decoration: none; font-weight: 600;">← Zpět na hlavní stránku</a>
+  </div>
+
 </div>
 
+<footer>
+  <div class="container">
+    <p>© 2026 Jinachalupa.cz | <a href="index.html">Hlavní strana</a></p>
+  </div>
+</footer>
 
+<script>
+  // Funkce pro přepínání menu na mobilu
+  const menuToggle = document.getElementById('mobile-menu');
+  const navList = document.getElementById('nav-list');
 
-  <a href="index.html" class="back-link">← Zpět na hlavní stránku Jinachalupa.cz</a>
-</div>
+  menuToggle.addEventListener('click', () => {
+    navList.classList.toggle('active');
+  });
+
+  function toggleMenu() {
+    if (window.innerWidth <= 768) {
+      navList.classList.remove('active');
+    }
+  }
+
+  // Animace při skrolování
+  window.addEventListener('scroll', () => {
+    document.querySelectorAll('.reveal').forEach(el => {
+      if (el.getBoundingClientRect().top < window.innerHeight * 0.85) {
+        el.classList.add('active');
+      }
+    });
+  });
+
+  // Spuštění animace pro první sekci hned po načtení
+  window.dispatchEvent(new Event('scroll'));
+</script>
 
 </body>
 </html>
