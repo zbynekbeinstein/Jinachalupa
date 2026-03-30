@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WJ3GDJWRH4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-WJ3GDJWRH4');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Moderní chalupa pro rodiny. Kapacita 18 osob, 6 ložnic, vnitřní herna, venkovní nafukovací vířivka, velká pergola, grill. Pronájem od 13 000 Kč na prodloužený víkend. Bezpečná zahrada v Němeticích u Kelče.">
+  <meta name="keywords" content="chalupa pronájem, rodiny s dětmi, Moravskoslezský, Olomoucký, Zlínský, Beskydy, Kelč, ubytování, dovolená, venkovský relax, zahrada, vířivka">
+  <meta name="author" content="Jinachalupa.cz">
+  <meta name="robots" content="index, follow">
+  
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Jinachalupa.cz | Moderní chalupa na vesnici pro rodiny s dětmi">
+  <meta property="og:description" content="Moderní chalupa pro rodiny. Kapacita 18 osob, 6 ložnic, vnitřní herna, venkovní nafukovací vířivka.">
+  <meta property="og:image" content="https://i.postimg.cc/SKvQSxt2/00.jpg">
+  <meta property="og:url" content="https://jinachalupa.cz">
+  
+  <title>Jinachalupa.cz | Moderní chalupa na vesnici pro rodiny s dětmi</title>
+  <link rel="canonical" href="https://jinachalupa.cz">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75'>🏡</text></svg>">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { 
+      --pine: #2d4a35; --wheat: #e8d8b0; --cream: #faf7f0; --gold: #c9a84c; 
+      --text: #2a1f1a; --white: #ffffff; --green-res: #28a745; --light-gray: #f5f3f0;
+      --accent-light: #f0e6d2;
+    }
+    
+    html { scroll-behavior: smooth; }
+    body { 
+      font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); 
+      line-height: 1.6; -webkit-font-smoothing: antialiased;
+    }
+    
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-8px); } }
+    
+    .reveal { opacity: 0; transform: translateY(20px); transition: 0.6s ease-out; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    
+    /* Navigace */
+    nav { 
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; 
+      justify-content: space-between; align-items: center; background: var(--pine); height: 60px; 
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 0 20px;
+    }
+    .nav-links { display: flex; gap: 1rem; list-style: none; align-items: center; padding: 0; margin: 0 auto; }
+    .nav-links a { 
+      color: var(--wheat); text-decoration: none; font-size: 0.8rem; text-transform: uppercase; 
+      font-weight: 500; padding: 10px 5px; transition: 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* Nová tlačítka v navigaci */
+    .nav-pill-btn {
+      background: var(--pine);
+      color: var(--white);
+      border: 1px solid var(--wheat);
+      border-radius: 50px;
+      padding: 8px 20px;
+      font-size: 0.85rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .nav-pill-btn:hover {
+      background: var(--wheat);
+      color: var(--pine);
+    }
+
+    /* Hamburger Menu Styly */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 21px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 1002;
+      position: absolute;
+      right: 20px;
+      top: 20px;
+    }
+    .menu-toggle span {
+      width: 30px;
+      height: 3px;
+      background: var(--wheat);
+      border-radius: 10px;
+      transition: all 0.3s linear;
+    }
+
+    /* Responzivita Navigace */
+    @media (max-width: 768px) {
+      .menu-toggle { display: flex; }
+      nav { justify-content: flex-start; gap: 10px; padding-left: 10px; padding-right: 60px; }
+      .nav-pill-btn { padding: 6px 12px; font-size: 0.75rem; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px; /* Menu začíná přesně pod lištou, takže nepřekrývá tlačítka */
+        left: 0;
+        width: 100%;
+        background: var(--pine);
+        padding: 0;
+        gap: 0;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+      }
+      .nav-links.active { display: flex; }
+      .nav-links li { width: 100%; text-align: center; }
+      .nav-links a { display: block; padding: 15px; font-size: 1rem; border-bottom: 1px solid rgba(232, 216, 176, 0.1); }
+    }
+
+    /* Hero */
+    .hero { 
+      height: 85vh; margin-top: 60px; 
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+      url('https://i.postimg.cc/SKvQSxt2/00.jpg') center/cover; 
+      display: flex; flex-direction: column; align-items: center; justify-content: center; 
+      color: white; text-align: center; padding: 2rem;
+    }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 4.5rem); margin-bottom: 1rem; }
+    .hero p { font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; color: var(--wheat); margin-bottom: 2rem; }
+    
+    .hero-cta { 
+      background: transparent;
+      color: white; padding: 15px 35px; 
+      text-decoration: none; border-radius: 8px; font-weight: 600; text-align: center;
+      line-height: 1.4; transition: 0.3s;
+      border: 2px solid white;
+    }
+    .hero-cta:hover { transform: scale(1.03); background: rgba(255,255,255,0.1); }
+
+    /* Sekce */
+    section { padding: 5rem 0; scroll-margin-top: 80px; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--pine); margin-bottom: 0.5rem; }
+    .divider { width: 60px; height: 3px; background: var(--gold); margin-bottom: 2.5rem; }
+    
+    /* Karty a Grid */
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin: 3rem 0; }
+    .feature-item { text-align: center; }
+    .feature-icon { font-size: 2.5rem; display: block; margin-bottom: 1rem; }
+    
+    .trust-badges { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; margin-top: 3rem; border-top: 1px solid #ddd; padding-top: 2rem; }
+    .trust-badge { text-align: center; }
+    .trust-badge-number { font-size: 2.2rem; font-weight: 700; color: var(--gold); }
+
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+    .gallery-item { aspect-ratio: 1; overflow: hidden; border-radius: 8px; cursor: pointer; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.3s; }
+    .gallery-item:hover img { transform: scale(1.1); }
+
+    .price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+    .price-card { background: white; padding: 2rem; border-radius: 12px; text-align: center; border: 1px solid #eee; transition: 0.3s; }
+    .price-card:hover { border-color: var(--gold); transform: translateY(-5px); }
+    .price-value { font-size: 1.8rem; font-weight: bold; color: var(--gold); margin: 1rem 0; }
+
+    /* Footer - optimalizace */
+    footer { background: var(--pine); color: white; padding: 1.5rem 0; text-align: center; }
+    footer a { color: var(--wheat); text-decoration: none; }
+    footer p { margin: 0; padding: 0; line-height: 1.2; }
+    footer h2 { font-family: 'Playfair Display', serif; margin: 0 0 0.5rem 0; padding: 0; }
+    footer h2 a { color: white; text-decoration: none; transition: 0.3s; }
+    footer h2 a:hover { color: var(--gold); }
+
+    /* Lightbox */
+    #lightbox { position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; }
+    #lightbox img { max-width: 90%; max-height: 80vh; }
+    .lb-close { position: absolute; top: 20px; right: 20px; color: white; font-size: 2rem; cursor: pointer; }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#rezervace" class="nav-pill-btn" onclick="toggleMenu()">📅 Napište nám</a>
+  
+  <ul class="nav-links" id="nav-list">
+    <li><a href="#o-chalupe" onclick="toggleMenu()">Chalupa</a></li>
+    <li><a href="okoli.html">Okolí</a></li> 
+    <li><a href="#galerie" onclick="toggleMenu()">Fotky</a></li>
+    <li><a href="#rezervace" onclick="toggleMenu()">Termíny</a></li>
+    <li><a href="#cenik" onclick="toggleMenu()">Ceník</a></li>
+    <li><a href="#mapa" onclick="toggleMenu()">Mapa</a></li>
+    <li><a href="#hodnoceni" onclick="toggleMenu()">Hodnocení</a></li>
+    <li><a href="#kontakt" onclick="toggleMenu()">Kontakt</a></li>
+  </ul>
+
+  <a href="javascript:void(0)" class="nav-pill-btn" onclick="checkPassword()">🔑 Pro ubytované</a>
+  
+  <button class="menu-toggle" id="mobile-menu" aria-label="Menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<section id="hero" class="hero">
+  <p>Venkovský relax pro rodiny s dětmi</p>
+  <h1>Jinachalupa.cz</h1>
+  <a href="#cenik" class="hero-cta">
+    Cena od 190 Kč za osobu a den<br>
+    <span style="font-size: 0.8rem; font-weight: 400;">(týden v letní sezoně pro 18 osob)</span>
+  </a>
+</section>
+
+<section id="o-chalupe" class="container reveal">
+  <h2 class="section-title">O chalupě</h2>
+  <div class="divider"></div>
+  <p style="font-size: 1.2rem; color: var(--pine); font-weight: 500;">Ideální zázemí pro rodiny s dětmi. Společné zážitky, na které se nezapomíná.</p>
+  <p style="margin-top: 1.5rem;">Víme, že naplánovat dovolenou pro několik rodin najednou může být oříšek. U nás v Němeticích jsme proto vše připravili tak, aby si děti měly kde hrát a dospělí si mohli v klidu vypít kávu nebo sklenku vína. Naše chalupa kombinuje moderní komfort s kouzlem venkova a nabízí velkorysý prostor až pro 18 hostů v 6 samostatných ložnicích, což zajišťuje soukromí i při plném obsazení.</p>
+  
+  <h3 style="margin-top: 2.5rem; color: var(--pine);">Proč si nás rodiny vybírají?</h3>
+  <div style="margin-top: 1rem;">
+    <p><strong>Zábava za každého počasí:</strong> Naše prostorná vnitřní herna je nejoblíbenějším místem dětí. Zatímco se ony zabaví hrou, vy o nich máte přehled, ale užíváte si zasloužený relax.</p>
+    <p style="margin-top: 1rem;"><strong>Bezpečná zahrada a relax:</strong> Celý pozemek je navržen tak, aby si děti mohly bezpečně hrát venku. Třešničkou na dortu je venkovní vířivka, která poslouží jako vodní radovánky pro nejmenší a večer jako oáza klidu pro rodiče pod hvězdami.</p>
+    <p style="margin-top: 1rem;"><strong>Společné večery u ohně:</strong> Velká pergola s grilem je srdcem naší zahrady. Je to ideální místo pro společné večeře, opékání špekáčků nebo jen posezení u ohně, zatímco děti usínají v patře.</p>
+  </div>
+
+  <div class="features-grid">
+    <div class="feature-item"><span class="feature-icon">👥</span><h4>Kapacita 18 osob</h4><p>6 stylových ložnic s pohodlnými lůžky</p></div>
+    <div class="feature-item"><span class="feature-icon">🎮</span><h4>Zábava</h4><p>Velká vnitřní herna pro děti</p></div>
+    <div class="feature-item"><span class="feature-icon">🌳</span><h4>Zahrada</h4><p>Pergola s grilem, bezpečné hřiště, nafukovací vířivka</p></div>
+  </div>
+
+  <div class="trust-badges">
+    <div class="trust-badge"><div class="trust-badge-number">50+</div><div class="trust-badge-label">Spokojených pronajímatelů</div></div>
+    <div class="trust-badge"><div class="trust-badge-number">4.9/5</div><div class="trust-badge-label">Průměrné hodnocení</div></div>
+    <div class="trust-badge"><div class="trust-badge-number">18</div><div class="trust-badge-label">Osob max. kapacita</div></div>
+  </div>
+</section>
+
+<section id="galerie" class="container reveal">
+  <h2 class="section-title">Fotogalerie</h2>
+  <div class="divider"></div>
+  <p style="margin-bottom: 1.5rem;">Klikněte na kteroukoliv fotku pro větší náhled</p>
+  <div class="gallery-grid" id="main-gallery"></div>
+</section>
+
+<section id="rezervace" class="container reveal">
+  <h2 class="section-title">Termíny a rezervace</h2>
+  <div class="divider"></div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+    <div>
+      <h3 style="margin-bottom: 1rem; color: var(--pine);">Kalendář obsazenosti</h3>
+      <iframe src="https://obsazenost.e-chalupy.cz/kalendar.php?id=18461&pocetMesicu=12&velikost=3&jazyk=cz" width="100%" height="460" frameborder="0" style="border-radius: 10px; border: 1px solid #eee;"></iframe>
+    </div>
+    <div>
+      <h3 style="margin-bottom: 1rem; color: var(--pine);">Napište nám</h3>
+      <div id="ech_kontakt_c"></div>
+      <script>window.ech_kontakt = { id: '18461', klic: 'a0d08ec1c093DF2', styl: '1', barvaTlacitko: '#28a745', jazyk: 'cs' };</script>
+      <script src="https://api2.e-chalupy.cz/konfigurator/kontakt/js/kontakt.js" async></script>
+      <p style="margin-top: 1rem; font-size: 0.8rem; color: #777; text-align: center;">Vaše poptávka bude odeslána přímo majiteli objektu přes systém e-chalupy.cz.</p>
+    </div>
+  </div>
+</section>
+
+<section id="cenik" class="container reveal">
+  <h2 class="section-title">Ceník pronájmu</h2>
+  <div class="divider"></div>
+  <div class="price-grid">
+    <div class="price-card">
+      <h3>Letní sezóna</h3>
+      <p>červen–září</p>
+      <div class="price-value">24 000 Kč</div>
+      <p>Na týden (7 nocí)<br>pro 18 osob</p>
+    </div>
+    <div class="price-card">
+      <h3>Mimo sezónu</h3>
+      <p>říjen–květen</p>
+      <div class="price-value">20 000 Kč</div>
+      <p>Na týden (7 nocí)<br>pro 18 osob</p>
+    </div>
+    <div class="price-card">
+      <h3>Prodloužený víkend</h3>
+      <p>Pátek–pondělí</p>
+      <div class="price-value">13 000 Kč</div>
+      <p>3 noci (pátek–pondělí)<br>pro 18 osob</p>
+    </div>
+    <div class="price-card">
+      <h3>Svátky</h3>
+      <p>Vánoce, Silvestr, Velikonoce</p>
+      <div class="price-value">Cena dle dohody</div>
+      <p>Individuální kalkulace</p>
+    </div>
+  </div>
+  <p style="text-align: center; margin-top: 2rem; font-weight: 500;">Uvedené ceny jsou bez elektřiny a vody (platí se dle skutečného odběru).</p>
+  <div style="text-align: center; margin-top: 2rem;">
+    <a href="#rezervace" class="hero-cta" style="background: var(--pine); border: none;">Napište nám →</a>
+  </div>
+</section>
+
+<section id="mapa" class="container reveal">
+  <h2 class="section-title">Kde nás najdete</h2>
+  <div class="divider"></div>
+  <p style="margin-bottom: 1.5rem;">Naše chalupa se nachází v klidné části Němetic, pouhých 15 minut od města Kelč v Moravskoslezském kraji.</p>
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2595.641659976451!2d17.816401077114175!3d49.49127815661413!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471393e2b204f767%3A0x67878d9101c57e5d!2zTsSbbWV0aWNlIDk3LCA3NTYgNDMgS2VsxI0!5e0!3m2!1scs!2scz!4v1711488000000" width="100%" height="400" style="border:0; border-radius: 12px;" allowfullscreen="" loading="lazy"></iframe>
+  <div style="text-align: center; margin-top: 1.5rem;">
+    <a href="tel:+420608945349" class="hero-cta" style="background: #444; border: none;">☎️ Zavolat (608 945 349)</a>
+  </div>
+</section>
+
+<section id="hodnoceni" class="container reveal">
+  <h2 class="section-title">Hodnocení hostů</h2>
+  <div class="divider"></div>
+  <div id="echalupy-hodnoceni"></div>
+  <script>window.echalupyIdObjektu = '18461'; window.echalupyVzhled = 'p'; window.celkoveHodnoceni = '1'; window.pocetZaznamu = 'vse';</script>
+  <script src="https://api2.e-chalupy.cz/konfigurator/hodnoceni/widget/dist/widgetHodnoceni.js" charset="UTF-8"></script>
+</section>
+
+<footer id="kontakt">
+  <div class="container">
+    <h2><a href="#hero">Jinachalupa.cz</a></h2>
+    <p>Němetice 97, 756 43 Kelč</p>
+    <p>Telefon: <a href="tel:+420608945349">+420 608 945 349</a></p>
+    <p>Email: <a href="mailto:jinachalupa@gmail.com">jinachalupa@gmail.com</a></p>
+    <p style="color: var(--wheat); font-size: 0.9rem;">Provozovatel: <strong>Z. B.</strong>, IČO: <strong>12345678</strong></p>
+    <div style="margin-top: 0.5rem; font-size: 0.8rem; opacity: 0.7;">
+      © 2026 Jinachalupa.cz. Všechna práva vyhrazena. | <a href="#">Zásady ochrany osobních údajů</a>
+    </div>
+  </div>
+</footer>
+
+<div id="lightbox" onclick="closeLightbox()">
+  <span class="lb-close">✕</span>
+  <img id="lightbox-img" src="">
+</div>
+
+<script>
+  // Funkce pro přepínání menu na mobilu
+  const menuToggle = document.getElementById('mobile-menu');
+  const navList = document.getElementById('nav-list');
+
+  menuToggle.addEventListener('click', () => {
+    navList.classList.toggle('active');
+  });
+
+  // Funkce pro zavření menu po kliknutí na odkaz (aby menu nezaclánělo při posunu na sekci)
+  function toggleMenu() {
+    if (window.innerWidth <= 768) {
+      navList.classList.remove('active');
+    }
+  }
+
+  // Funkce pro kontrolu hesla
+  function checkPassword() {
+    var password = prompt("Zadejte heslo pro vstup do sekce pro ubytované:");
+    if (password === "2023") {
+      window.location.href = "ubytovani.html";
+    } else if (password !== null) {
+      alert("Nesprávné heslo.");
+    }
+  }
+
+  const allPhotos = [
+    "https://i.postimg.cc/MK84QJCY/01.jpg", "https://i.postimg.cc/CxhQcHLB/02.jpg", "https://i.postimg.cc/YCrsdfqh/03.jpg", 
+    "https://i.postimg.cc/HkYh64sn/04.jpg", "https://i.postimg.cc/Prz7bFhf/05.jpg", "https://i.postimg.cc/D0ccGHGH/30.jpg", 
+    "https://i.postimg.cc/d399CpCz/31.jpg", "https://i.postimg.cc/SQLdH2Pf/32.jpg", "https://i.postimg.cc/rFQJw6Mc/33.jpg", 
+    "https://i.postimg.cc/KzP7Xw0c/42.jpg", "https://i.postimg.cc/cHR7q2FS/43.jpg", "https://i.postimg.cc/3xtbV4k5/06.jpg", 
+    "https://i.postimg.cc/g2gBQXnT/07.jpg", "https://i.postimg.cc/Gp9SCLy7/08.jpg", "https://i.postimg.cc/mgm6JzPx/09.jpg", 
+    "https://i.postimg.cc/HspzmWDd/34.jpg", "https://i.postimg.cc/bNzgPYX5/35.jpg", "https://i.postimg.cc/VN5H8ftc/10.jpg", 
+    "https://i.postimg.cc/KY4s2GTc/11.jpg", "https://i.postimg.cc/tgfvRKdR/12.jpg", "https://i.postimg.cc/tgfvRKdP/13.jpg", 
+    "https://i.postimg.cc/5tGK9h5S/14.jpg", "https://i.postimg.cc/MTQPn9t3/15.jpg", "https://i.postimg.cc/yYvP8qBt/36.jpg", 
+    "https://i.postimg.cc/bwrRG6wC/39.jpg", "https://i.postimg.cc/P57Q1mCM/41.jpg", "https://i.postimg.cc/0QYGgFVx/45.jpg",
+    "https://i.postimg.cc/tTxSsB2G/16.jpg", "https://i.postimg.cc/L5FyLjbm/17.jpg", "https://i.postimg.cc/1X1WwDjm/18.jpg", 
+    "https://i.postimg.cc/1X0vH4kw/19.jpg", "https://i.postimg.cc/Hn062jq3/20.jpg", "https://i.postimg.cc/8zzZRptW/21.jpg", 
+    "https://i.postimg.cc/N0ybnNh9/22.jpg", "https://i.postimg.cc/R03GYPrM/23.jpg", "https://i.postimg.cc/RFKdSNVL/24.jpg", 
+    "https://i.postimg.cc/rs99434n/25.jpg", "https://i.postimg.cc/wx52nyrx/26.jpg", "https://i.postimg.cc/HnttMR00/27.jpg", 
+    "https://i.postimg.cc/prvZpRmh/28.jpg", "https://i.postimg.cc/3NZZGVGf/29.jpg", "https://i.postimg.cc/RZhT3PZX/37.jpg", 
+    "https://i.postimg.cc/dV397WVn/38.jpg", "https://i.postimg.cc/P5JML65V/40.jpg", "https://i.postimg.cc/sx3Y3mLV/44.jpg"
+  ];
+
+  function renderGallery() {
+    const grid = document.getElementById('main-gallery');
+    allPhotos.forEach((url, idx) => {
+      const item = document.createElement('div');
+      item.className = 'gallery-item';
+      item.onclick = () => openLightbox(url);
+      item.innerHTML = `<img src="${url}" alt="Chalupa foto ${idx+1}">`;
+      grid.appendChild(item);
+    });
+  }
+
+  function openLightbox(url) {
+    document.getElementById('lightbox-img').src = url;
+    document.getElementById('lightbox').style.display = 'flex';
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').style.display = 'none';
+  }
+
+  window.addEventListener('scroll', () => {
+    document.querySelectorAll('.reveal').forEach(el => {
+      if (el.getBoundingClientRect().top < window.innerHeight * 0.8) el.classList.add('active');
+    });
+  });
+
+  renderGallery();
+</script>
+
+</body>
+</html>
