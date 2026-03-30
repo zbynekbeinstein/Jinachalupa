@@ -63,7 +63,6 @@
     }
     .nav-links a:hover { color: var(--gold); }
 
-    /* Nová tlačítka v navigaci */
     .nav-pill-btn {
       background: var(--pine);
       color: var(--white);
@@ -82,7 +81,6 @@
       color: var(--pine);
     }
 
-    /* Hamburger Menu Styly */
     .menu-toggle {
       display: none;
       flex-direction: column;
@@ -106,7 +104,6 @@
       transition: all 0.3s linear;
     }
 
-    /* Responzivita Navigace */
     @media (max-width: 768px) {
       .menu-toggle { display: flex; }
       nav { justify-content: flex-start; gap: 10px; padding-left: 10px; padding-right: 60px; }
@@ -128,7 +125,6 @@
       .nav-links a { display: block; padding: 15px; font-size: 1rem; border-bottom: 1px solid rgba(232, 216, 176, 0.1); }
     }
 
-    /* Hero */
     .hero { 
       height: 85vh; margin-top: 60px; 
       background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
@@ -148,13 +144,11 @@
     }
     .hero-cta:hover { transform: scale(1.03); background: rgba(255,255,255,0.1); }
 
-    /* Sekce */
     section { padding: 5rem 0; scroll-margin-top: 80px; }
     .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
     .section-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--pine); margin-bottom: 0.5rem; }
     .divider { width: 60px; height: 3px; background: var(--gold); margin-bottom: 2.5rem; }
     
-    /* Karty a Grid */
     .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin: 3rem 0; }
     .feature-item { text-align: center; }
     .feature-icon { font-size: 2.5rem; display: block; margin-bottom: 1rem; }
@@ -167,13 +161,19 @@
     .gallery-item { aspect-ratio: 1; overflow: hidden; border-radius: 8px; cursor: pointer; }
     .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.3s; }
     .gallery-item:hover img { transform: scale(1.1); }
+    
+    .load-more-container { text-align: center; margin-top: 2rem; }
+    .load-more-btn { 
+      background: var(--pine); color: white; border: none; padding: 12px 30px; 
+      border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.3s; 
+    }
+    .load-more-btn:hover { background: var(--gold); }
 
     .price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
     .price-card { background: white; padding: 2rem; border-radius: 12px; text-align: center; border: 1px solid #eee; transition: 0.3s; }
     .price-card:hover { border-color: var(--gold); transform: translateY(-5px); }
     .price-value { font-size: 1.8rem; font-weight: bold; color: var(--gold); margin: 1rem 0; }
 
-    /* NOVÉ: Úprava sekce Rezervace - formulář vlevo, kalendář vpravo */
     .reservation-flex {
       display: flex;
       flex-direction: row;
@@ -189,11 +189,10 @@
         flex-direction: column;
       }
       .order-mobile-first {
-        order: -1; /* Na mobilu zajistí, že formulář bude nad kalendářem */
+        order: -1;
       }
     }
 
-    /* Footer - optimalizace */
     footer { background: var(--pine); color: white; padding: 1.5rem 0; text-align: center; }
     footer a { color: var(--wheat); text-decoration: none; }
     footer p { margin: 0; padding: 0; line-height: 1.2; }
@@ -201,7 +200,6 @@
     footer h2 a { color: white; text-decoration: none; transition: 0.3s; }
     footer h2 a:hover { color: var(--gold); }
 
-    /* Lightbox */
     #lightbox { position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; }
     #lightbox img { max-width: 90%; max-height: 80vh; }
     .lb-close { position: absolute; top: 20px; right: 20px; color: white; font-size: 2rem; cursor: pointer; }
@@ -264,6 +262,8 @@
     <div class="trust-badge"><div class="trust-badge-number">50+</div><div class="trust-badge-label">Spokojených pronajímatelů</div></div>
     <div class="trust-badge"><div class="trust-badge-number">4.9/5</div><div class="trust-badge-label">Průměrné hodnocení</div></div>
     <div class="trust-badge"><div class="trust-badge-number">18</div><div class="trust-badge-label">Osob max. kapacita</div></div>
+    <div class="trust-badge"><div class="trust-badge-number">6 ložnic</div><div class="trust-badge-label">2 + 2</div></div>
+    <div class="trust-badge"><div class="trust-badge-number">koupelna + WC</div><div class="trust-badge-label">Vybavení</div></div>
   </div>
 </section>
 
@@ -272,14 +272,15 @@
   <div class="divider"></div>
   <p style="margin-bottom: 1.5rem;">Klikněte na kteroukoliv fotku pro větší náhled</p>
   <div class="gallery-grid" id="main-gallery"></div>
+  <div class="load-more-container" id="load-more-container">
+    <button class="load-more-btn" onclick="showRemainingPhotos()">Zobrazit dalších 37 fotografií</button>
+  </div>
 </section>
 
-<!-- UPRAVENÁ SEKCE REZERVACE -->
 <section id="rezervace" class="container reveal">
   <h2 class="section-title">Termíny a rezervace</h2>
   <div class="divider"></div>
   <div class="reservation-flex">
-    <!-- Formulář vlevo (na mobilu první) -->
     <div class="order-mobile-first">
       <h3 style="margin-bottom: 1rem; color: var(--pine);">Napište nám</h3>
       <div id="ech_kontakt_c"></div>
@@ -287,7 +288,6 @@
       <script src="https://api2.e-chalupy.cz/konfigurator/kontakt/js/kontakt.js" async></script>
       <p style="margin-top: 1rem; font-size: 0.8rem; color: #777; text-align: center;">Vaše poptávka bude odeslána přímo majiteli objektu přes systém e-chalupy.cz.</p>
     </div>
-    <!-- Kalendář vpravo -->
     <div>
       <h3 style="margin-bottom: 1rem; color: var(--pine);">Kalendář obsazenosti</h3>
       <iframe src="https://obsazenost.e-chalupy.cz/kalendar.php?id=18461&pocetMesicu=12&velikost=3&jazyk=cz" width="100%" height="460" frameborder="0" style="border-radius: 10px; border: 1px solid #eee;"></iframe>
@@ -409,13 +409,32 @@
 
   function renderGallery() {
     const grid = document.getElementById('main-gallery');
-    allPhotos.forEach((url, idx) => {
+    // Zobrazíme jen prvních 8 fotek
+    const initialPhotos = allPhotos.slice(0, 8);
+    
+    initialPhotos.forEach((url, idx) => {
       const item = document.createElement('div');
       item.className = 'gallery-item';
       item.onclick = () => openLightbox(url);
-      item.innerHTML = `<img src="${url}" alt="Chalupa foto ${idx+1}">`;
+      item.innerHTML = `<img src="${url}" alt="Chalupa foto ${idx+1}" loading="lazy">`;
       grid.appendChild(item);
     });
+  }
+
+  function showRemainingPhotos() {
+    const grid = document.getElementById('main-gallery');
+    const remainingPhotos = allPhotos.slice(8);
+    
+    remainingPhotos.forEach((url, idx) => {
+      const item = document.createElement('div');
+      item.className = 'gallery-item';
+      item.onclick = () => openLightbox(url);
+      item.innerHTML = `<img src="${url}" alt="Chalupa foto ${idx+9}" loading="lazy">`;
+      grid.appendChild(item);
+    });
+    
+    // Schováme tlačítko
+    document.getElementById('load-more-container').style.display = 'none';
   }
 
   function openLightbox(url) {
