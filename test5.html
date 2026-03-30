@@ -53,30 +53,79 @@
     /* Navigace */
     nav { 
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; 
-      justify-content: center; background: var(--pine); height: 60px; 
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      justify-content: space-between; align-items: center; background: var(--pine); height: 60px; 
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 0 20px;
     }
-    .nav-links { display: flex; gap: 1rem; list-style: none; align-items: center; padding: 0 10px; }
+    .nav-links { display: flex; gap: 1rem; list-style: none; align-items: center; padding: 0; margin: 0 auto; }
     .nav-links a { 
       color: var(--wheat); text-decoration: none; font-size: 0.8rem; text-transform: uppercase; 
       font-weight: 500; padding: 10px 5px; transition: 0.3s;
     }
     .nav-links a:hover { color: var(--gold); }
-    
-    /* Plovoucí tlačítka */
-    .btn-login {
-      position: fixed; top: 80px; right: 20px; z-index: 1001;
-      padding: 10px 20px; background: var(--pine); color: white;
-      border-radius: 50px; text-decoration: none; font-size: 0.85rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15); border: 1px solid var(--wheat);
+
+    /* Nová tlačítka v navigaci */
+    .nav-pill-btn {
+      background: var(--pine);
+      color: var(--white);
+      border: 1px solid var(--wheat);
+      border-radius: 50px;
+      padding: 8px 20px;
+      font-size: 0.85rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+      white-space: nowrap;
       cursor: pointer;
     }
-    
-    .btn-contact-float {
-      position: fixed; bottom: 20px; right: 20px; z-index: 999;
-      padding: 15px 30px; background: var(--gold); color: white;
-      border-radius: 50px; text-decoration: none; font-weight: bold;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.25); animation: float 3s infinite;
+    .nav-pill-btn:hover {
+      background: var(--wheat);
+      color: var(--pine);
+    }
+
+    /* Hamburger Menu Styly */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 21px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 1002;
+      position: absolute;
+      right: 20px;
+      top: 20px;
+    }
+    .menu-toggle span {
+      width: 30px;
+      height: 3px;
+      background: var(--wheat);
+      border-radius: 10px;
+      transition: all 0.3s linear;
+    }
+
+    /* Responzivita Navigace */
+    @media (max-width: 768px) {
+      .menu-toggle { display: flex; }
+      nav { justify-content: flex-start; gap: 10px; padding-left: 10px; padding-right: 60px; }
+      .nav-pill-btn { padding: 6px 12px; font-size: 0.75rem; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: var(--pine);
+        padding: 0;
+        gap: 0;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+      }
+      .nav-links.active { display: flex; }
+      .nav-links li { width: 100%; text-align: center; }
+      .nav-links a { display: block; padding: 15px; font-size: 1rem; border-bottom: 1px solid rgba(232, 216, 176, 0.1); }
     }
 
     /* Hero */
@@ -91,11 +140,11 @@
     .hero p { font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px; color: var(--wheat); margin-bottom: 2rem; }
     
     .hero-cta { 
-      background: transparent; /* ZMĚNA: Průhledné pozadí */
+      background: transparent;
       color: white; padding: 15px 35px; 
       text-decoration: none; border-radius: 8px; font-weight: 600; text-align: center;
       line-height: 1.4; transition: 0.3s;
-      border: 2px solid white; /* ZMĚNA: Bílý okraj */
+      border: 2px solid white;
     }
     .hero-cta:hover { transform: scale(1.03); background: rgba(255,255,255,0.1); }
 
@@ -124,40 +173,66 @@
     .price-card:hover { border-color: var(--gold); transform: translateY(-5px); }
     .price-value { font-size: 1.8rem; font-weight: bold; color: var(--gold); margin: 1rem 0; }
 
-    /* Footer */
-    footer { background: var(--pine); color: white; padding: 4rem 0; text-align: center; }
+    /* Úprava sekce Rezervace - formulář vlevo, kalendář vpravo */
+    .reservation-flex {
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .reservation-flex > div {
+      flex: 1;
+      min-width: 300px;
+    }
+    @media (max-width: 768px) {
+      .reservation-flex {
+        flex-direction: column; /* Na mobilu pod sebou */
+      }
+      .order-mobile-first {
+        order: -1; /* Formulář půjde nahoru */
+      }
+    }
+
+    /* Footer - optimalizace */
+    footer { background: var(--pine); color: white; padding: 1.5rem 0; text-align: center; }
     footer a { color: var(--wheat); text-decoration: none; }
+    footer p { margin: 0; padding: 0; line-height: 1.2; }
+    footer h2 { font-family: 'Playfair Display', serif; margin: 0 0 0.5rem 0; padding: 0; }
+    footer h2 a { color: white; text-decoration: none; transition: 0.3s; }
+    footer h2 a:hover { color: var(--gold); }
 
     /* Lightbox */
     #lightbox { position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; }
     #lightbox img { max-width: 90%; max-height: 80vh; }
     .lb-close { position: absolute; top: 20px; right: 20px; color: white; font-size: 2rem; cursor: pointer; }
-
-    @media (max-width: 600px) {
-      .hero h1 { font-size: 2.2rem; }
-      .nav-links a { font-size: 0.65rem; padding: 5px; }
-      .btn-login { top: 70px; right: 10px; padding: 8px 15px; }
-    }
   </style>
 </head>
 <body>
 
-<a href="javascript:void(0)" class="btn-login" onclick="checkPassword()">Pro ubytované</a>
-<a href="#rezervace" class="btn-contact-float">📅 Napište nám</a>
-
 <nav>
-  <ul class="nav-links">
-    <li><a href="#o-chalupe">Chalupa</a></li>
-    <li><a href="okoli.html">Okolí</a></li> <li><a href="#galerie">Fotky</a></li>
-    <li><a href="#rezervace">Termíny</a></li>
-    <li><a href="#cenik">Ceník</a></li>
-    <li><a href="#mapa">Mapa</a></li>
-    <li><a href="#hodnoceni">Hodnocení</a></li>
-    <li><a href="#kontakt">Kontakt</a></li>
+  <a href="#rezervace" class="nav-pill-btn" onclick="toggleMenu()">📅 Napište nám</a>
+  
+  <ul class="nav-links" id="nav-list">
+    <li><a href="#o-chalupe" onclick="toggleMenu()">Chalupa</a></li>
+    <li><a href="okoli.html">Okolí</a></li> 
+    <li><a href="#galerie" onclick="toggleMenu()">Fotky</a></li>
+    <li><a href="#rezervace" onclick="toggleMenu()">Termíny</a></li>
+    <li><a href="#cenik" onclick="toggleMenu()">Ceník</a></li>
+    <li><a href="#mapa" onclick="toggleMenu()">Mapa</a></li>
+    <li><a href="#hodnoceni" onclick="toggleMenu()">Hodnocení</a></li>
+    <li><a href="#kontakt" onclick="toggleMenu()">Kontakt</a></li>
   </ul>
+
+  <a href="javascript:void(0)" class="nav-pill-btn" onclick="checkPassword()">🔑 Pro ubytované</a>
+  
+  <button class="menu-toggle" id="mobile-menu" aria-label="Menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </nav>
 
-<section class="hero">
+<section id="hero" class="hero">
   <p>Venkovský relax pro rodiny s dětmi</p>
   <h1>Jinachalupa.cz</h1>
   <a href="#cenik" class="hero-cta">
@@ -202,17 +277,17 @@
 <section id="rezervace" class="container reveal">
   <h2 class="section-title">Termíny a rezervace</h2>
   <div class="divider"></div>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-    <div>
-      <h3 style="margin-bottom: 1rem; color: var(--pine);">Kalendář obsazenosti</h3>
-      <iframe src="https://obsazenost.e-chalupy.cz/kalendar.php?id=18461&pocetMesicu=12&velikost=3&jazyk=cz" width="100%" height="460" frameborder="0" style="border-radius: 10px; border: 1px solid #eee;"></iframe>
-    </div>
-    <div>
+  <div class="reservation-flex">
+    <div class="order-mobile-first">
       <h3 style="margin-bottom: 1rem; color: var(--pine);">Napište nám</h3>
       <div id="ech_kontakt_c"></div>
       <script>window.ech_kontakt = { id: '18461', klic: 'a0d08ec1c093DF2', styl: '1', barvaTlacitko: '#28a745', jazyk: 'cs' };</script>
       <script src="https://api2.e-chalupy.cz/konfigurator/kontakt/js/kontakt.js" async></script>
       <p style="margin-top: 1rem; font-size: 0.8rem; color: #777; text-align: center;">Vaše poptávka bude odeslána přímo majiteli objektu přes systém e-chalupy.cz.</p>
+    </div>
+    <div>
+      <h3 style="margin-bottom: 1rem; color: var(--pine);">Kalendář obsazenosti</h3>
+      <iframe src="https://obsazenost.e-chalupy.cz/kalendar.php?id=18461&pocetMesicu=12&velikost=3&jazyk=cz" width="100%" height="460" frameborder="0" style="border-radius: 10px; border: 1px solid #eee;"></iframe>
     </div>
   </div>
 </section>
@@ -252,32 +327,14 @@
   </div>
 </section>
 
-<section id="mapa" class="container reveal">
-  <h2 class="section-title">Kde nás najdete</h2>
-  <div class="divider"></div>
-  <p style="margin-bottom: 1.5rem;">Naše chalupa se nachází v klidné části Němetic, pouhých 15 minut od města Kelč v Moravskoslezském kraji.</p>
-  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2595.641659976451!2d17.816401077114175!3d49.49127815661413!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471393e2b204f767%3A0x67878d9101c57e5d!2zTsSbbWV0aWNlIDk3LCA3NTYgNDMgS2VsxI0!5e0!3m2!1scs!2scz!4v1711488000000" width="100%" height="400" style="border:0; border-radius: 12px;" allowfullscreen="" loading="lazy"></iframe>
-  <div style="text-align: center; margin-top: 1.5rem;">
-    <a href="tel:+420608945349" class="hero-cta" style="background: #444; border: none;">☎️ Zavolat (608 945 349)</a>
-  </div>
-</section>
-
-<section id="hodnoceni" class="container reveal">
-  <h2 class="section-title">Hodnocení hostů</h2>
-  <div class="divider"></div>
-  <div id="echalupy-hodnoceni"></div>
-  <script>window.echalupyIdObjektu = '18461'; window.echalupyVzhled = 'p'; window.celkoveHodnoceni = '1'; window.pocetZaznamu = 'vse';</script>
-  <script src="https://api2.e-chalupy.cz/konfigurator/hodnoceni/widget/dist/widgetHodnoceni.js" charset="UTF-8"></script>
-</section>
-
 <footer id="kontakt">
   <div class="container">
-    <h2 style="font-family: 'Playfair Display', serif; margin-bottom: 1.5rem;">Jinachalupa.cz</h2>
+    <h2><a href="#hero">Jinachalupa.cz</a></h2>
     <p>Němetice 97, 756 43 Kelč</p>
     <p>Telefon: <a href="tel:+420608945349">+420 608 945 349</a></p>
     <p>Email: <a href="mailto:jinachalupa@gmail.com">jinachalupa@gmail.com</a></p>
-    <p style="margin-top: 1.5rem; color: var(--wheat); font-size: 0.9rem;">Provozovatel: <strong>Zbynek Beinstein</strong>, IČO: <strong>21739731</strong></p>
-    <div style="margin-top: 2rem; font-size: 0.8rem; opacity: 0.7;">
+    <p style="color: var(--wheat); font-size: 0.9rem;">Provozovatel: <strong>Z. B.</strong>, IČO: <strong>12345678</strong></p>
+    <div style="margin-top: 0.5rem; font-size: 0.8rem; opacity: 0.7;">
       © 2026 Jinachalupa.cz. Všechna práva vyhrazena. | <a href="#">Zásady ochrany osobních údajů</a>
     </div>
   </div>
@@ -289,7 +346,19 @@
 </div>
 
 <script>
-  // ZMĚNA: Funkce pro kontrolu hesla
+  const menuToggle = document.getElementById('mobile-menu');
+  const navList = document.getElementById('nav-list');
+
+  menuToggle.addEventListener('click', () => {
+    navList.classList.toggle('active');
+  });
+
+  function toggleMenu() {
+    if (window.innerWidth <= 768) {
+      navList.classList.remove('active');
+    }
+  }
+
   function checkPassword() {
     var password = prompt("Zadejte heslo pro vstup do sekce pro ubytované:");
     if (password === "2023") {
