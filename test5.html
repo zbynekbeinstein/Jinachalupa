@@ -173,7 +173,7 @@
     .price-card:hover { border-color: var(--gold); transform: translateY(-5px); }
     .price-value { font-size: 1.8rem; font-weight: bold; color: var(--gold); margin: 1rem 0; }
 
-    /* Úprava sekce Rezervace - formulář vlevo, kalendář vpravo */
+    /* NOVÉ: Úprava sekce Rezervace - formulář vlevo, kalendář vpravo */
     .reservation-flex {
       display: flex;
       flex-direction: row;
@@ -186,10 +186,10 @@
     }
     @media (max-width: 768px) {
       .reservation-flex {
-        flex-direction: column; /* Na mobilu pod sebou */
+        flex-direction: column;
       }
       .order-mobile-first {
-        order: -1; /* Formulář půjde nahoru */
+        order: -1; /* Na mobilu zajistí, že formulář bude nad kalendářem */
       }
     }
 
@@ -274,10 +274,12 @@
   <div class="gallery-grid" id="main-gallery"></div>
 </section>
 
+<!-- UPRAVENÁ SEKCE REZERVACE -->
 <section id="rezervace" class="container reveal">
   <h2 class="section-title">Termíny a rezervace</h2>
   <div class="divider"></div>
   <div class="reservation-flex">
+    <!-- Formulář vlevo (na mobilu první) -->
     <div class="order-mobile-first">
       <h3 style="margin-bottom: 1rem; color: var(--pine);">Napište nám</h3>
       <div id="ech_kontakt_c"></div>
@@ -285,6 +287,7 @@
       <script src="https://api2.e-chalupy.cz/konfigurator/kontakt/js/kontakt.js" async></script>
       <p style="margin-top: 1rem; font-size: 0.8rem; color: #777; text-align: center;">Vaše poptávka bude odeslána přímo majiteli objektu přes systém e-chalupy.cz.</p>
     </div>
+    <!-- Kalendář vpravo -->
     <div>
       <h3 style="margin-bottom: 1rem; color: var(--pine);">Kalendář obsazenosti</h3>
       <iframe src="https://obsazenost.e-chalupy.cz/kalendar.php?id=18461&pocetMesicu=12&velikost=3&jazyk=cz" width="100%" height="460" frameborder="0" style="border-radius: 10px; border: 1px solid #eee;"></iframe>
@@ -325,6 +328,24 @@
   <div style="text-align: center; margin-top: 2rem;">
     <a href="#rezervace" class="hero-cta" style="background: var(--pine); border: none;">Napište nám →</a>
   </div>
+</section>
+
+<section id="mapa" class="container reveal">
+  <h2 class="section-title">Kde nás najdete</h2>
+  <div class="divider"></div>
+  <p style="margin-bottom: 1.5rem;">Naše chalupa se nachází v klidné části Němetic, pouhých 15 minut od města Kelč v Moravskoslezském kraji.</p>
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2595.641659976451!2d17.816401077114175!3d49.49127815661413!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471393e2b204f767%3A0x67878d9101c57e5d!2zTsSbbWV0aWNlIDk3LCA3NTYgNDMgS2VsxI0!5e0!3m2!1scs!2scz!4v1711488000000" width="100%" height="400" style="border:0; border-radius: 12px;" allowfullscreen="" loading="lazy"></iframe>
+  <div style="text-align: center; margin-top: 1.5rem;">
+    <a href="tel:+420608945349" class="hero-cta" style="background: #444; border: none;">☎️ Zavolat (608 945 349)</a>
+  </div>
+</section>
+
+<section id="hodnoceni" class="container reveal">
+  <h2 class="section-title">Hodnocení hostů</h2>
+  <div class="divider"></div>
+  <div id="echalupy-hodnoceni"></div>
+  <script>window.echalupyIdObjektu = '18461'; window.echalupyVzhled = 'p'; window.celkoveHodnoceni = '1'; window.pocetZaznamu = 'vse';</script>
+  <script src="https://api2.e-chalupy.cz/konfigurator/hodnoceni/widget/dist/widgetHodnoceni.js" charset="UTF-8"></script>
 </section>
 
 <footer id="kontakt">
