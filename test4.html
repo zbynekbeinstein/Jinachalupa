@@ -63,7 +63,6 @@
     }
     .nav-links a:hover { color: var(--gold); }
 
-    /* Nová tlačítka v navigaci */
     .nav-pill-btn {
       background: var(--pine);
       color: var(--white);
@@ -82,7 +81,6 @@
       color: var(--pine);
     }
 
-    /* Hamburger Menu Styly */
     .menu-toggle {
       display: none;
       flex-direction: column;
@@ -106,7 +104,6 @@
       transition: all 0.3s linear;
     }
 
-    /* Responzivita Navigace */
     @media (max-width: 768px) {
       .menu-toggle { display: flex; }
       nav { justify-content: flex-start; gap: 10px; padding-left: 10px; padding-right: 60px; }
@@ -115,7 +112,7 @@
         display: none;
         flex-direction: column;
         position: absolute;
-        top: 60px; /* Menu začíná přesně pod lištou, takže nepřekrývá tlačítka */
+        top: 60px;
         left: 0;
         width: 100%;
         background: var(--pine);
@@ -128,7 +125,6 @@
       .nav-links a { display: block; padding: 15px; font-size: 1rem; border-bottom: 1px solid rgba(232, 216, 176, 0.1); }
     }
 
-    /* Hero */
     .hero { 
       height: 85vh; margin-top: 60px; 
       background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
@@ -148,13 +144,11 @@
     }
     .hero-cta:hover { transform: scale(1.03); background: rgba(255,255,255,0.1); }
 
-    /* Sekce */
     section { padding: 5rem 0; scroll-margin-top: 80px; }
     .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
     .section-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--pine); margin-bottom: 0.5rem; }
     .divider { width: 60px; height: 3px; background: var(--gold); margin-bottom: 2.5rem; }
     
-    /* Karty a Grid */
     .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin: 3rem 0; }
     .feature-item { text-align: center; }
     .feature-icon { font-size: 2.5rem; display: block; margin-bottom: 1rem; }
@@ -173,22 +167,35 @@
     .price-card:hover { border-color: var(--gold); transform: translateY(-5px); }
     .price-value { font-size: 1.8rem; font-weight: bold; color: var(--gold); margin: 1rem 0; }
 
-    /* Footer - optimalizace */
-    footer { background: var(--pine); color: white; padding: 2.5rem 0; text-align: center; }
+    .reservation-flex {
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .reservation-flex > div {
+      flex: 1;
+      min-width: 300px;
+    }
+    @media (max-width: 768px) {
+      .reservation-flex {
+        flex-direction: column;
+      }
+      .order-mobile-first {
+        order: -1;
+      }
+    }
+
+    footer { background: var(--pine); color: white; padding: 1.5rem 0; text-align: center; }
     footer a { color: var(--wheat); text-decoration: none; }
-    footer p { margin: 0; line-height: 1.5; }
-    footer h2 { font-family: 'Playfair Display', serif; margin-bottom: 1rem; }
+    footer p { margin: 0; padding: 0; line-height: 1.2; }
+    footer h2 { font-family: 'Playfair Display', serif; margin: 0 0 0.5rem 0; padding: 0; }
     footer h2 a { color: white; text-decoration: none; transition: 0.3s; }
     footer h2 a:hover { color: var(--gold); }
 
-    /* Lightbox */
     #lightbox { position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; }
     #lightbox img { max-width: 90%; max-height: 80vh; }
     .lb-close { position: absolute; top: 20px; right: 20px; color: white; font-size: 2rem; cursor: pointer; }
-
-    @media (max-width: 600px) {
-      .hero h1 { font-size: 2.2rem; }
-    }
   </style>
 </head>
 <body>
@@ -248,6 +255,8 @@
     <div class="trust-badge"><div class="trust-badge-number">50+</div><div class="trust-badge-label">Spokojených pronajímatelů</div></div>
     <div class="trust-badge"><div class="trust-badge-number">4.9/5</div><div class="trust-badge-label">Průměrné hodnocení</div></div>
     <div class="trust-badge"><div class="trust-badge-number">18</div><div class="trust-badge-label">Osob max. kapacita</div></div>
+    <div class="trust-badge"><div class="trust-badge-number">6 ložnic</div><div class="trust-badge-label">2 + 2</div></div>
+    <div class="trust-badge"><div class="trust-badge-number">koupelna + WC</div><div class="trust-badge-label">Vybavení</div></div>
   </div>
 </section>
 
@@ -261,17 +270,17 @@
 <section id="rezervace" class="container reveal">
   <h2 class="section-title">Termíny a rezervace</h2>
   <div class="divider"></div>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-    <div>
-      <h3 style="margin-bottom: 1rem; color: var(--pine);">Kalendář obsazenosti</h3>
-      <iframe src="https://obsazenost.e-chalupy.cz/kalendar.php?id=18461&pocetMesicu=12&velikost=3&jazyk=cz" width="100%" height="460" frameborder="0" style="border-radius: 10px; border: 1px solid #eee;"></iframe>
-    </div>
-    <div>
+  <div class="reservation-flex">
+    <div class="order-mobile-first">
       <h3 style="margin-bottom: 1rem; color: var(--pine);">Napište nám</h3>
       <div id="ech_kontakt_c"></div>
       <script>window.ech_kontakt = { id: '18461', klic: 'a0d08ec1c093DF2', styl: '1', barvaTlacitko: '#28a745', jazyk: 'cs' };</script>
       <script src="https://api2.e-chalupy.cz/konfigurator/kontakt/js/kontakt.js" async></script>
       <p style="margin-top: 1rem; font-size: 0.8rem; color: #777; text-align: center;">Vaše poptávka bude odeslána přímo majiteli objektu přes systém e-chalupy.cz.</p>
+    </div>
+    <div>
+      <h3 style="margin-bottom: 1rem; color: var(--pine);">Kalendář obsazenosti</h3>
+      <iframe src="https://obsazenost.e-chalupy.cz/kalendar.php?id=18461&pocetMesicu=12&velikost=3&jazyk=cz" width="100%" height="460" frameborder="0" style="border-radius: 10px; border: 1px solid #eee;"></iframe>
     </div>
   </div>
 </section>
@@ -335,8 +344,8 @@
     <p>Němetice 97, 756 43 Kelč</p>
     <p>Telefon: <a href="tel:+420608945349">+420 608 945 349</a></p>
     <p>Email: <a href="mailto:jinachalupa@gmail.com">jinachalupa@gmail.com</a></p>
-    <p style="margin-top: 1rem; color: var(--wheat); font-size: 0.9rem;">Provozovatel: <strong>Z. B.</strong>, IČO: <strong>12345678</strong></p>
-    <div style="margin-top: 1.5rem; font-size: 0.8rem; opacity: 0.7;">
+    <p style="color: var(--wheat); font-size: 0.9rem;">Provozovatel: <strong>Z. B.</strong>, IČO: <strong>12345678</strong></p>
+    <div style="margin-top: 0.5rem; font-size: 0.8rem; opacity: 0.7;">
       © 2026 Jinachalupa.cz. Všechna práva vyhrazena. | <a href="#">Zásady ochrany osobních údajů</a>
     </div>
   </div>
@@ -348,7 +357,6 @@
 </div>
 
 <script>
-  // Funkce pro přepínání menu na mobilu
   const menuToggle = document.getElementById('mobile-menu');
   const navList = document.getElementById('nav-list');
 
@@ -356,14 +364,12 @@
     navList.classList.toggle('active');
   });
 
-  // Funkce pro zavření menu po kliknutí na odkaz (aby menu nezaclánělo při posunu na sekci)
   function toggleMenu() {
     if (window.innerWidth <= 768) {
       navList.classList.remove('active');
     }
   }
 
-  // Funkce pro kontrolu hesla
   function checkPassword() {
     var password = prompt("Zadejte heslo pro vstup do sekce pro ubytované:");
     if (password === "2023") {
