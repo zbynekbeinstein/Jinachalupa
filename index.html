@@ -18,7 +18,7 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Jinachalupa.cz | Moderní chalupa na vesnici pro rodiny s dětmi">
   <meta property="og:description" content="Moderní chalupa pro rodiny. Kapacita 18 osob, 6 ložnic, vnitřní herna, venkovní nafukovací vířivka.">
-  <meta property="og:image" content="https://jinachalupa.cz/00.jpg">
+  <meta property="og:image" content="https://jinachalupa.cz/hero.jpg">
   <meta property="og:url" content="https://jinachalupa.cz">
   
   <title>Jinachalupa.cz | Moderní chalupa na vesnici pro rodiny s dětmi</title>
@@ -128,7 +128,7 @@
     .hero { 
       height: 85vh; margin-top: 60px; 
       background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
-      url('00.jpg') center/cover; 
+      url('hero.jpg') center/cover; 
       display: flex; flex-direction: column; align-items: center; justify-content: center; 
       color: white; text-align: center; padding: 2rem;
     }
@@ -200,9 +200,50 @@
     footer h2 a { color: white; text-decoration: none; transition: 0.3s; }
     footer h2 a:hover { color: var(--gold); }
 
-    #lightbox { position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; }
-    #lightbox img { max-width: 90%; max-height: 80vh; }
-    .lb-close { position: absolute; top: 20px; right: 20px; color: white; font-size: 2rem; cursor: pointer; }
+    /* Lightbox a Zoom Stylace */
+    #lightbox { 
+      position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%; 
+      background: rgba(0,0,0,0.92); display: none; align-items: center; justify-content: center; 
+      touch-action: none; user-select: none;
+    }
+    .lb-wrapper {
+      position: relative;
+      max-width: 90%;
+      max-height: 85vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    #lightbox-img { 
+      max-width: 100%; 
+      max-height: 85vh; 
+      object-fit: contain; 
+      transition: transform 0.15s ease-out; 
+      cursor: zoom-in;
+    }
+    #lightbox-img.zoomed {
+      cursor: zoom-out;
+    }
+    .lb-close { 
+      position: absolute; top: 20px; right: 25px; color: white; font-size: 2.5rem; 
+      cursor: pointer; z-index: 2010; line-height: 1; opacity: 0.8; transition: 0.2s;
+    }
+    .lb-close:hover { opacity: 1; }
+    .lb-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,0.15); color: white; border: none; font-size: 2rem;
+      padding: 12px 18px; cursor: pointer; border-radius: 50%; z-index: 2010;
+      transition: 0.3s; display: flex; align-items: center; justify-content: center;
+    }
+    .lb-arrow:hover { background: rgba(255,255,255,0.35); }
+    .lb-prev { left: 20px; }
+    .lb-next { right: 20px; }
+    @media (max-width: 768px) {
+      .lb-arrow { padding: 8px 14px; font-size: 1.5rem; }
+      .lb-prev { left: 10px; }
+      .lb-next { right: 10px; }
+    }
   </style>
 </head>
 <body>
@@ -335,7 +376,6 @@
   <div class="divider"></div>
   <p style="margin-bottom: 1.5rem;">Naše chalupa se nachází v klidné části Němetic, pouhých 15 minut od města Kelč v Moravskoslezském kraji.</p>
   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2595.641659976451!2d17.816401077114175!3d49.49127815661413!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471393e2b204f767%3A0x67878d9101c57e5d!2zTsSbbWV0aWNlIDk3LCA3NTYgNDMgS2VsxI0!5e0!3m2!1scs!2scz!4v1711488000000" width="100%" height="400" style="border:0; border-radius: 12px;" allowfullscreen="" loading="lazy"></iframe>
-
 </section>
 
 <section id="hodnoceni" class="container reveal">
@@ -359,9 +399,14 @@
   </div>
 </footer>
 
-<div id="lightbox" onclick="closeLightbox()">
-  <span class="lb-close">✕</span>
-  <img id="lightbox-img" src="">
+<!-- Lightbox Okno se šipkami a zoomem -->
+<div id="lightbox" onclick="handleLightboxClick(event)">
+  <span class="lb-close" onclick="closeLightbox()">&times;</span>
+  <button class="lb-arrow lb-prev" onclick="changePhoto(-1, event)">❮</button>
+  <div class="lb-wrapper">
+    <img id="lightbox-img" src="" alt="Detail fotky" onclick="toggleZoom(event)">
+  </div>
+  <button class="lb-arrow lb-next" onclick="changePhoto(1, event)">❯</button>
 </div>
 
 <script>
@@ -387,7 +432,7 @@
     }
   }
 
-  // Seznam lokálních fotografií v repozitáři
+  // Seznam fotografií
   const allPhotos = [
     "01.jpg", "02.jpg", "03.jpg", "04.jpg", "05.jpg", "30.jpg", 
     "31.jpg", "32.jpg", "33.jpg", "42.jpg", "43.jpg", "06.jpg", 
@@ -399,7 +444,9 @@
     "38.jpg", "40.jpg", "44.jpg"
   ];
 
-  // Pomocná funkce pro vytvoření prvku obrázku se skrytím při nenalezení
+  let currentPhotoIndex = 0;
+  let currentScale = 1;
+
   function createGalleryItem(url, index) {
     const item = document.createElement('div');
     item.className = 'gallery-item';
@@ -409,12 +456,11 @@
     img.alt = `Chalupa foto ${index + 1}`;
     img.loading = 'lazy';
     
-    // Pokud obrázek neexistuje, skryje celou dlaždici
     img.onerror = () => {
       item.style.display = 'none';
     };
     
-    item.onclick = () => openLightbox(url);
+    item.onclick = () => openLightbox(index);
     item.appendChild(img);
     return item;
   }
@@ -449,14 +495,81 @@
     document.getElementById('load-more-container').style.display = 'none';
   }
 
-  function openLightbox(url) {
-    document.getElementById('lightbox-img').src = url;
+  // Funkce Lightboxu a navigace
+  function openLightbox(index) {
+    currentPhotoIndex = index;
+    updateLightboxImage();
     document.getElementById('lightbox').style.display = 'flex';
   }
 
   function closeLightbox() {
     document.getElementById('lightbox').style.display = 'none';
+    resetZoom();
   }
+
+  function updateLightboxImage() {
+    resetZoom();
+    const img = document.getElementById('lightbox-img');
+    img.src = allPhotos[currentPhotoIndex];
+  }
+
+  function changePhoto(direction, event) {
+    if (event) event.stopPropagation();
+    currentPhotoIndex = (currentPhotoIndex + direction + allPhotos.length) % allPhotos.length;
+    updateLightboxImage();
+  }
+
+  function handleLightboxClick(event) {
+    if (event.target.id === 'lightbox' || event.target.className === 'lb-wrapper') {
+      closeLightbox();
+    }
+  }
+
+  // Zoom logika
+  function toggleZoom(event) {
+    event.stopPropagation();
+    const img = document.getElementById('lightbox-img');
+    if (currentScale === 1) {
+      currentScale = 2;
+      img.classList.add('zoomed');
+    } else {
+      resetZoom();
+    }
+    img.style.transform = `scale(${currentScale})`;
+  }
+
+  function resetZoom() {
+    currentScale = 1;
+    const img = document.getElementById('lightbox-img');
+    if (img) {
+      img.style.transform = 'scale(1)';
+      img.classList.remove('zoomed');
+    }
+  }
+
+  // Klávesové zkratky (Šipky + ESC)
+  document.addEventListener('keydown', (e) => {
+    const lightbox = document.getElementById('lightbox');
+    if (lightbox.style.display === 'flex') {
+      if (e.key === 'ArrowRight') changePhoto(1);
+      if (e.key === 'ArrowLeft') changePhoto(-1);
+      if (e.key === 'Escape') closeLightbox();
+    }
+  });
+
+  // Zoom kolečkem myši v lightboxu
+  document.getElementById('lightbox').addEventListener('wheel', (e) => {
+    e.preventDefault();
+    const img = document.getElementById('lightbox-img');
+    if (e.deltaY < 0) {
+      currentScale = Math.min(currentScale + 0.25, 3);
+    } else {
+      currentScale = Math.max(currentScale - 0.25, 1);
+    }
+    img.style.transform = `scale(${currentScale})`;
+    if (currentScale > 1) img.classList.add('zoomed');
+    else img.classList.remove('zoomed');
+  }, { passive: false });
 
   window.addEventListener('scroll', () => {
     document.querySelectorAll('.reveal').forEach(el => {
